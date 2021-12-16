@@ -1,0 +1,20 @@
+<div class="portada">
+    <div class="card">
+        <div class="card-header">
+            INGRESO A LA PLATAFORMA
+        </div>
+        <div class="form-group">
+            <label for="userName">Usuario</label>
+            <input type="email" class="form-control" id="userName" 
+                [(ngModel)]="loginData.userName">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" 
+                [(ngModel)]="loginData.password">
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-primary" (click)="login()">Ingresar</button>
+        </div>
+    </div>
+</div>

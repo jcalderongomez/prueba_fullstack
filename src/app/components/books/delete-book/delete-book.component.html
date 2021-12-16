@@ -1,0 +1,19 @@
+<p>delete-book works!</p>
+<div class="card">
+    <div class="card-header">
+        Est&aacute; seguro de que desea elminar este libro?
+    </div>
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Titulo: {{book.title}}</li>
+            <li class="list-group-item">Descripci&oacute;n: {{book.description}}</li>
+            <li class="list-group-item">N&uacute;mero de p&aacute;ginas: {{book.pageCount}}</li>
+            <li class="list-group-item">Resumen: {{book.excerpt}}</li>
+            <li class="list-group-item">Fecha de publicaci&oacute;n: {{book.publishDate}}</li>
+        </ul>
+    </div>
+    <div class="card-footer">
+        <button class="btn btn-info" (click)="cancel()">Cancelar</button>
+        <button class="btn btn-warning" (click)="confirm()">Confirmar</button>
+    </div>
+</div>

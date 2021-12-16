@@ -1,0 +1,63 @@
+<div class="fondo_biblioteca">
+    <div class="container">
+      <div class="row">
+        <div class="col-4">
+          <div class="row">
+            <h1 align="center">Registrar Libro</h1>
+            <app-create-book></app-create-book>
+          </div>
+          <div>
+          </div>
+        </div>
+        <div class="col-8">
+          <div class="row">
+            <h1 class="text-center m-3">LISTA DE LIBROS</h1>
+            <div class="pull-right m-3">
+  
+              <button class="btn btn-success btn-sm m-2" type="button" name="export" title="Export Data">
+                <i class="fa fa-file-excel-o"></i>&nbsp;Exportar a excel
+              </button>
+  
+              <button class="btn btn-secondary btn-sm " type="button" (click)="synBooks()" name="export"
+                title="Export Data">
+                <i class="fa fa-file-excel-o"></i>&nbsp;Sincronizar con wsdl
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" datatable class="row-border hover">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>T&iacute;tulo</th>
+                  <th>Descripci&oacute;n </th>
+                  <th>N&uacute;mero P&aacute;ginas</th>
+                  <th>Resumen</th>
+                  <th>Fecha publicaci&oacute;n</th>
+                  <th>Acci&oacute;n</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let e of data">
+                  <td>{{e.id}}</td>
+                  <td>{{e.title | truncate:15}} </td>
+                  <td>{{e.description | truncate:15}}</td>
+                  <td>{{e.pageCount}}</td>
+                  <td>{{e.excerpt | truncate:50}}</td>
+                  <td>{{e.publishDate}}</td>
+                  <td>
+                    <button class="btn btn-primary" (click)="updateBook(e)">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </button>
+                    <button [routerLink]="['delete-book', e.id]" class="btn btn-danger">
+                      <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

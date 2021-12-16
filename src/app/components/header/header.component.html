@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" *ngIf="auth.isAutenticado" routerLink="/home">Home</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" *ngIf="auth.isAutenticado" routerLink="/authors">Autores</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" *ngIf="auth.isAutenticado" routerLink="/books">Libros</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" *ngIf="auth.isAutenticado" routerLink="/buscar-por">Buscar</a>
+            </li>
+
+        </ul>
+        <span style="flex: 1 1 auto;"></span>
+        <button class="btn" *ngIf="auth.isAutenticado">Bienvenido: {{auth.getUsername}}</button>
+        <button class="btn" *ngIf="auth.isAutenticado" (click)="auth.logout()">Logut</button>
+        <button class="btn" *ngIf="!auth.isAutenticado" routerLink="/register">Registrarse</button>
+        <button class="btn" *ngIf="!auth.isAutenticado" routerLink="/login">Login</button>
+        
+    </div>
+</nav>

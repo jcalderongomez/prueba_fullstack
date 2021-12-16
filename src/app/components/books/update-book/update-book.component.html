@@ -1,0 +1,34 @@
+
+
+
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Actualizar Libro</h4>
+        <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+        <div class=" container">
+            <div class="starter-template">
+                <div class="row">
+                    <div class="col-md-12 mt-5">
+                        <div class="form-group m-10">
+                            <input type="hidden" class="form-control" formControlName="id" />
+                            <label>T&iacute;tulo</label>
+                            <input type="text" class="form-control" formControlName="title" />
+                            <label>Descripci&oacute;n</label>
+                            <textarea class="form-control" formControlName="description"></textarea>
+                            <label>N&uacute;mero de p&aacute;ginas</label>
+                            <input type="text" class="form-control" formControlName="pageCount" />
+                            <label>Resumen</label>
+                            <textarea class="form-control" formControlName="excerpt"></textarea>
+                            <div class="form-group m-2">
+                                <button class="btn btn-primary m-7">Actualizar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>

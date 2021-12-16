@@ -1,0 +1,17 @@
+<div class="card">
+    <div class="card-header">
+        Est&aacute; seguro de que desea elminar este Autor?
+    </div>
+    <div class="card-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Id: {{author.id}}</li>
+            <li class="list-group-item">Libro: {{author.bookId}}</li>
+            <li class="list-group-item">Nombre: {{author.firstName}}</li>
+            <li class="list-group-item">Apellido: {{author.lastName}}</li>
+        </ul>
+    </div>
+    <div class="card-footer">
+        <button class="btn btn-info" (click)="cancel()">Cancelar</button>
+        <button class="btn btn-warning" (click)="confirm()">Confirmar</button>
+    </div>
+</div>

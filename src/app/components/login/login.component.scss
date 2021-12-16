@@ -1,0 +1,32 @@
+.portada{
+    background-image: url('../../../assets/imagenes/portada.jpg');
+    background-position: center;
+    background-size: cover;
+    height: 93vh;
+}
+
+.card{
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+   justify-content: center;
+    width: 500px;
+     height: 300px;
+     display: flex; 
+     flex-direction: column;
+}
+
+.card-body{
+
+    background-color: red;
+}
+.form-group{
+    margin-top: 5px;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.btn {
+    position: relative;
+}

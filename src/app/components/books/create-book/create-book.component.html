@@ -1,0 +1,29 @@
+<p>create-book works!</p>
+<div class="container">
+    <div class="starter-template">
+        <div class="row">
+            <div class="col-md-12 mt-5">
+                <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label>T&iacute;tulo</label>
+                        <input type="text" class="form-control" formControlName="title" />
+                        <label>Descripci&oacute;n</label>
+                        <input type="text" class="form-control" formControlName="description" />
+                        <label>N&uacute;mero de p&aacute;ginas</label>
+                        <input type="text" class="form-control" formControlName="pageCount" />
+                        <label>Resumen</label>
+                        <input type="text" class="form-control" formControlName="excerpt" />
+                        <label>fecha de publicaci&oacute;n</label>
+                        <div class="input-group">
+                            <input type="date" class="form-control" placeholder="yyyy-mm-dd" name="dp"
+                                [(ngModel)]="model" formControlName="publishDate">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary">Aceptar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

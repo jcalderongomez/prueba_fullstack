@@ -1,0 +1,55 @@
+<div class="fondo_authors">
+    <div class="container">
+      <div class="row">
+        <div class="col-4">
+          <div class="row">
+            <h1 align="center">Registrar Autor</h1>
+            <app-create-author></app-create-author>
+          </div>
+        </div>
+        <div class="col-8">
+          <div class="row">
+            <h1 class="text-center m-3">LISTA DE AUTORES</h1>
+          </div>
+          <div class="pull-right m-3">
+            <button class="btn btn-success btn-sm m-2" type="button" name="export" title="Export Data">
+              <i class="fa fa-file-excel-o"></i>&nbsp;Exportar a excel
+            </button>
+            <button class="btn btn-secondary btn-sm " type="button" (click)="synAuthors()" name="export"
+              title="Export Data">
+              <i class="fa fa-file-excel-o"></i>&nbsp;Sincronizar con wsdl
+            </button>
+          </div>
+          <div class="row">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" datatable class="row-border hover">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Book</th>
+                  <th>First name</th>
+                  <th>Last name</th>
+                  <th>Accion</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let e of data; let i=index">
+                  <td>{{e.id}}</td>
+                  <td>{{e.idBook}}</td>
+                  <td>{{e.firstName}}</td>
+                  <td>{{e.lastName}}</td>
+                  <td>
+                    <button class="btn btn-primary" (click)="updateAuthor(e)">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </button>
+                    <button [routerLink]="['delete-author', e.id]" class="btn btn-danger">
+                      <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
