@@ -6,6 +6,8 @@ import { UpdateAuthorComponent } from '../../authors/update-author/update-author
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { AuthorService } from '../../../services/author.service';
+import { ExcelService } from '../../../services/export-excel.service';
+
 import Swal from 'sweetalert2';
 
 
@@ -15,7 +17,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./read-author.component.scss']
 })
 export class ReadAuthorComponent implements OnInit {
-
+  columns: any[] = [];
+  footerData: any[][] = []
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
   data: any;
@@ -24,7 +27,8 @@ export class ReadAuthorComponent implements OnInit {
   constructor(private http: HttpClient,
     private dialog: NgbModal,
     private service: AuthorService,
-    private router : Router) { }
+    private router : Router,
+    public excelService: ExcelService) { }
 
   ngOnInit(): void {
     this.dtOptions = {
@@ -63,5 +67,13 @@ export class ReadAuthorComponent implements OnInit {
     let datos = JSON.stringify(book);
     localStorage.setItem('datos',datos);
     this.dialog.open(UpdateAuthorComponent);
+  }
+
+  exportarExcel(){
+    this.columns = ['ID', 'ID BOOK', 'FIRST NAME', 'LASTNAME'];
+    this.service.getAuthors().subscribe((res:any)=>{
+      this.data = res.result;
+      });
+      this.excelService.exportAsExcelFile('Lista de autores', '', this.columns, this.data, this.footerData, 'listado_autores', 'hoja1');
   }
 }

@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 import { faEdit} from '@fortawesome/free-solid-svg-icons/faEdit';
 import { faEraser} from '@fortawesome/free-solid-svg-icons/faEraser';
 import Swal from 'sweetalert2';
-
+import { ExcelService } from '../../../services/export-excel.service';
 
 @Component({
   selector: 'app-read-book',
@@ -18,7 +18,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./read-book.component.scss']
 })
 export class ReadBookComponent implements OnInit {
-
+  columns: any[] = [];
+  footerData: any[][] = []
   date: { year: number; month: number; } | undefined;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject<any>();
@@ -30,7 +31,8 @@ export class ReadBookComponent implements OnInit {
     private service: BookService,
     private router: Router,
     private dialog: NgbModal,
-    private bookService: BookService) { }
+    private bookService: BookService,
+    public excelService: ExcelService) { }
 
   ngOnInit(): void {
     this.dtOptions = {
@@ -73,5 +75,13 @@ export class ReadBookComponent implements OnInit {
   closeModal(){
     this.dialog.dismissAll();
     window.location.reload();
+  }
+
+  exportarExcel(){
+    this.columns = ['ID', 'TITULO', 'DESCRIPCION', 'NUMERO DE PAGINAS','RESUMEN','FECHA DE PUBLICACION'];
+    this.service.getBooks().subscribe((res:any)=>{
+      this.data = res.result;
+      });
+      this.excelService.exportAsExcelFile('Lista de libros', '', this.columns, this.data, this.footerData, 'listado_libros', 'hoja1');
   }
 }

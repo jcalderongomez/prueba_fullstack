@@ -21,10 +21,10 @@
 
         </ul>
         <span style="flex: 1 1 auto;"></span>
-        <button class="btn" *ngIf="auth.isAutenticado">Bienvenido: {{auth.getUsername}}</button>
-        <button class="btn" *ngIf="auth.isAutenticado" (click)="auth.logout()">Logut</button>
-        <button class="btn" *ngIf="!auth.isAutenticado" routerLink="/register">Registrarse</button>
-        <button class="btn" *ngIf="!auth.isAutenticado" routerLink="/login">Login</button>
+        <button class="btn btn-info" *ngIf="auth.isAutenticado">Bienvenido: {{auth.getUsername}}</button>
+        <button class="btn btn-warning" *ngIf="auth.isAutenticado" (click)="auth.logout()">Logut</button>
+        <button class="btn btn-primary" *ngIf="!auth.isAutenticado" routerLink="/register">Registrarse</button>
+        <button class="btn btn-secondary" *ngIf="!auth.isAutenticado" routerLink="/login">Login</button>
         
     </div>
 </nav>
