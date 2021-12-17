@@ -69,6 +69,8 @@ export class BookService {
 
     return this.http.delete(this.baseUrl + "/" + id, { headers: headers });
   }
+
+  
   findBook(rqBook: any) {
     let auth_token = localStorage.getItem('token_value');
     const headers = new HttpHeaders({
@@ -76,6 +78,6 @@ export class BookService {
       'Authorization': `Bearer ${auth_token}`
     })
     const rq = JSON.stringify(rqBook);
-    return this.http.post(this.baseUrl + "/GetBookAuth", rq, { headers: headers });
+    return this.http.post(this.baseUrl + "/GetBooksBy", rq, { headers: headers });
   }
 }

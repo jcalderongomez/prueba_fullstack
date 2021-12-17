@@ -1,30 +1,68 @@
 <div class="container">
+  <div class="row">
     <div class="col-4">
-        <h1>Buscar por...</h1>
-        <form [formGroup]="findBooks" (ngSubmit)="onSubmit()">
+      <h1>Buscar por...</h1>
+      <form [formGroup]="findBooks" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label>fecha de publicaci&oacute;n incial</label>
+          <input
+            type="date" ui-f
+            class="form-control"
+            placeholder="yyyy-mm-dd"
+            id="dp1"
+            name="dp1"
+            formControlName="finicio"
+            
+          />
+        </div>
+        <div class="form-group">
+          <label>fecha de publicaci&oacute;n final</label>
+          <input
+            type="date"
+            class="form-control"
+            placeholder="yyyy-mm-dd"
+            id="dp2"
+            name="dp2"
+            formControlName="ffin"
+          />
+        </div>
 
-            <div class="form-group">
-                <label>fecha de publicaci&oacute;n incial</label>
-                <input type="date" class="form-control" placeholder="yyyy-mm-dd" name="dp1" [(ngModel)]="model1"
-                    formControlName="finicio">
-            </div>
-            <div class="form-group">
-                <label>fecha de publicaci&oacute;n final</label>
-                <input type="date" class="form-control" placeholder="yyyy-mm-dd" name="dp2" [(ngModel)]="model2"
-                    formControlName="ffin">
-            </div>
-            <div class="form-group">
-                <label>Seleccione Autor</label>
-                <select class="form-select" formControlName="idAuth">
-                    <option *ngFor="let x of lstAuthors" [value]="x.id">{{x.firstName+" "+x.lastName}}</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-primary m-2 ">Buscar</button>
-            </div>
-        </form>
 
+
+        <div class="form-group">
+          <button class="btn btn-primary m-2">Buscar</button>
+        </div>
+      </form>
     </div>
     <div class="col-8">
+      <div class="row">
+        <h1 class="text-center m-3">RESULTADOS POR FECHAS</h1>
+      </div>
+      <div class="row">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" datatable class="row-border hover">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>T&iacute;tulo</th>
+              <th>Descripci&oacute;n </th>
+              <th>N&uacute;mero P&aacute;ginas</th>
+              <th>Resumen</th>
+              <th>Fecha publicaci&oacute;n</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let e of data">
+              <td>{{e.id}}</td>
+              <td>{{e.title | truncate:15}} </td>
+              <td>{{e.description | truncate:15}}</td>
+              <td>{{e.pageCount}}</td>
+              <td>{{e.excerpt | truncate:50}}</td>
+              <td>{{e.publishDate}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
 </div>
