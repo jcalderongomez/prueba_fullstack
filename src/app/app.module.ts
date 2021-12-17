@@ -35,6 +35,8 @@ import { AuthService } from './services/auth.service';
 import { AuthorService } from './services/author.service';
 import { BookService } from './services/book.service';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { DateComponent } from './components/date/date.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -57,11 +59,13 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     SearchByComponent,
     HeaderComponent,
     FooterComponent,
-    DataTableComponent
+    DataTableComponent,
+    DateComponent
   ],
   imports: [
     BrowserModule, AppRouterModule, HttpClientModule,DataTablesModule, 
-    ReactiveFormsModule, NgbModule, FormsModule, FontAwesomeModule
+    ReactiveFormsModule, NgbModule, FormsModule, FontAwesomeModule,NgSelectModule
+
   ],
   entryComponents:[UpdateAuthorComponent,UpdateBookComponent],
   providers: [BookService, AuthorService, AuthService],

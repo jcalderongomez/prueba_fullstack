@@ -4,23 +4,23 @@
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<form [formGroup]="authorForm" (ngSubmit)="onSubmit()">
+<form #formData="ngForm">
     <div class=" container">
         <div class="starter-template">
             <div class="row">
                 <div class="col-md-12 mt-5">
                     <div class="form-group">
-                        <input type="hidden" class="form-control" formControlName="id"/>
-                        <label>Libro</label>
-                        <select class="form-select" formControlName="idBook" [(ngModel)]="valSelect">
-                            <option *ngFor="let x of lstBooks" [value]="x.id">{{x.title}}</option>
-                        </select>
-                        <label>Nombre</label>
-                        <input type="text" class="form-control" formControlName="firstName">
+                        <label>Libro</label>                        
+                        <ng-select [(ngModel)]="valSelect"id="bookid" name="bookid" >
+                         <ng-option *ngFor="let op of lstBooks" [value]="op.id">{{op.title}}
+                        </ng-option>
+                    </ng-select>
+        <label>Nombre</label>
+                        <input type="text" class="form-control" id="firstname" name="firstname" [(ngModel)]="data.firstName" >
                         <label>Apellido</label>
-                        <input type="text" class="form-control" formControlName="lastName" />
+                        <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="data.lastName" />
                         <div class="form-group">
-                            <button class="btn btn-primary m-7">Actualizar</button>
+                            <button class="btn btn-primary m-7" (click)="onSubmit()">Actualizar</button>
                         </div>
                     </div>
                 </div>

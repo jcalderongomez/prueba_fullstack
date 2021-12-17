@@ -30,7 +30,6 @@ export class DeleteAuthorComponent implements OnInit {
   getAllAuthor(): void {
     this.id = this.route.snapshot.paramMap.get('id');
     this.service.getAuthor(this.id).subscribe((data: any) => {
-      console.log(data);
       this.author.id = data.result.id;
       this.author.bookId = data.result.bookId;
       this.author.firstName = data.result.firstName;
@@ -40,13 +39,13 @@ export class DeleteAuthorComponent implements OnInit {
 
   cancel() {
     Swal.fire('Se ha cancelado la operación');
-    this.router.navigate(['/'])
+    this.router.navigate(['/authors'])
   }
 
   confirm() {
     this.service.deleteAuthor(this.id).subscribe((data: any) => {
       Swal.fire('Registro Eliminado');
-      this.router.navigate(['authors']);
+      this.router.navigate(['/authors']);
     })
   }
 }

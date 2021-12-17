@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { AuthorService } from '../../../services/author.service';
 import { BookService } from '../../../services/book.service';
 import { AuthorInterface } from '../../../interfaces/AuthorInterface';
+import { NgSelectConfig } from '@ng-select/ng-select';
 
 @Component({
   selector: 'app-update-author',
@@ -15,41 +16,27 @@ import { AuthorInterface } from '../../../interfaces/AuthorInterface';
 export class UpdateAuthorComponent implements OnInit {
 
   lstBooks: Array<any> = [];
-  valSelect: Number | undefined;
-  authorForm = new FormGroup({
-    id: new FormControl('', Validators.required),
-    idBook: new FormControl('', Validators.required),
-    firstName: new FormControl('', Validators.required),
-    lastName: new FormControl('', Validators.required),
+  valSelect:any=null;
+  
     
-  });
-    
-  constructor(private fb: FormBuilder,
+  constructor(
     private router: Router,
     private service: AuthorService,
     private dialog: NgbModal,
-    private bookService: BookService) { }
-
+    private config: NgSelectConfig,
+    private bookService: BookService) {
+      
+     }
+data:any={};
   ngOnInit(): void {
-
-    let datos = localStorage.getItem('datos');
+    this.loadBooks();
     
-    if (datos) {
-      let data = JSON.parse(datos);
-      this.loadBooks();
-      this.valSelect=data.idBook;
-      this.authorForm.controls['id'].setValue(data.id);
-      this.authorForm.controls['idBook'].setValue(data.idBook);
-      this.authorForm.controls['firstName'].setValue(data.firstName);
-      this.authorForm.controls['lastName'].setValue(data.lastName);
-    }
+    
+      
   }
 
   onSubmit() {
-    console.log(this.authorForm);
-    console.log("id autor: "+this.authorForm.value['id']);
-    console.log("id book: "+this.authorForm.value['idBook']);
-    this.service.updateAuthor(this.authorForm.value['id'], this.authorForm.value).subscribe((data: any) => {
+    this.service.updateAuthor(this.data.id, this.data).subscribe((data: any) => {
       alert("Libro actualizado correctamente");
       this.router.navigate(['/authors']);
       
@@ -58,7 +45,15 @@ export class UpdateAuthorComponent implements OnInit {
   
   loadBooks() {
     this.bookService.getBooks().subscribe((response: any) => {
+
       this.lstBooks = response.result;
+      
+      let datos = localStorage.getItem('datos');
+      if (datos) {
+        this.data= JSON.parse(datos);
+        this.valSelect=this.data.idBook;
+        delete this.data.book;
+    }
     })
   }
   

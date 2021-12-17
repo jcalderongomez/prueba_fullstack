@@ -44,7 +44,12 @@ export class AuthorService {
   }
   
   getAuthor(id: number){
-    return this.http.get(this.baseUrl+"/"+id);
+    let auth_token= localStorage.getItem('token_value');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${auth_token}` 
+    });
+    return this.http.get(this.baseUrl+"/"+id,{headers: headers});
   }
 
   deleteAuthor(id:number){

@@ -7,24 +7,23 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" *ngIf="auth.isAutenticado" routerLink="/home">Home</a>
+                <a class="nav-link" style="cursor: pointer;" *ngIf="auth.isAutenticado" routerLink="/home"><span class="btn btn-info">Home</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" *ngIf="auth.isAutenticado" routerLink="/authors">Autores</a>
+                <a class="nav-link" *ngIf="auth.isAutenticado" routerLink="/authors"><span class="btn btn-info">Autores</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" *ngIf="auth.isAutenticado" routerLink="/books">Libros</a>
+                <a class="nav-link" *ngIf="auth.isAutenticado" routerLink="/books"><span class="btn btn-info">Libros</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" *ngIf="auth.isAutenticado" routerLink="/buscar-por">Buscar</a>
+                <a class="nav-link" *ngIf="auth.isAutenticado" routerLink="/search-by"><span class="btn btn-info">Buscar</span></a>
             </li>
 
         </ul>
         <span style="flex: 1 1 auto;"></span>
-        <button class="btn btn-info" *ngIf="auth.isAutenticado">Bienvenido: {{auth.getUsername}}</button>
-        <button class="btn btn-warning" *ngIf="auth.isAutenticado" (click)="auth.logout()">Logut</button>
-        <button class="btn btn-primary" *ngIf="!auth.isAutenticado" routerLink="/register">Registrarse</button>
-        <button class="btn btn-secondary" *ngIf="!auth.isAutenticado" routerLink="/login">Login</button>
-        
+        <a class="nav-link" *ngIf="auth.isAutenticado"><span class="btn btn-info">Bienvenido: {{auth.getUsername}}</span></a>
+        <a class="nav-link" *ngIf="auth.isAutenticado" (click)="auth.logout()"><span class="btn btn-info">Logut</span></a>
+        <a class="nav-link" *ngIf="!auth.isAutenticado" routerLink="/register"><span class="btn btn-info">Registrarse</span></a>
+        <a class="nav-link" *ngIf="!auth.isAutenticado" routerLink="/login"><span class="btn btn-info">Login</span></a>        
     </div>
 </nav>

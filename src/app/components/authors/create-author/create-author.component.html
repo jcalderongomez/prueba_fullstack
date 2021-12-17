@@ -1,25 +1,26 @@
 <div class="container">
-    <div class="starter-template">
-        <div class="row">
-            <div class="col-md-12 mt-5">
-                <form [formGroup]="authorForm" (ngSubmit)="onSubmit()">
-                    <div class="form-group">
-                        <div class="form-control">
-                            <label>Libro</label>
-                            <select class="form-select" formControlName="idBook">
-                                <option *ngFor="let x of lstBooks" [value]="x.id">{{x.title}}</option>
-                            </select>
-                        </div>
-                        <label>Nombre</label>
-                        <input type="text"  class="form-control" formControlName="firstName"/>
-                        <label>Apellido</label>
-                        <input type="text"  class="form-control" formControlName="lastName"/>
-                        <div class="form-group">
-                            <button  class="btn btn-primary m-2 ">Aceptar</button>
-                        </div>
-                    </div>
-                </form>
+    <div class="col-12">
+        <form [formGroup]="authorForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label>Seleccione el libro</label>
+                <select class="form-select" formControlName="idBook">
+                    <option *ngFor="let x of lstBooks" [value]="x.id">{{x.title}}</option>
+                </select>
             </div>
-        </div>
+
+            <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" class="form-control" formControlName="firstName" />
+            </div>
+            <div class="form-group">
+                <label>Apellido</label>
+                <input type="text" class="form-control" formControlName="lastName" />
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary m-2 ">Aceptar</button>
+            </div>
+
+
+        </form>
     </div>
 </div>

@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { NgbDateStruct, NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { BookService } from '../../../services/book.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-update-book',
@@ -36,13 +37,12 @@ export class UpdateBookComponent implements OnInit {
     let datos = localStorage.getItem('datos');
     if (datos) {
       let data = JSON.parse(datos);
-      console.log(data);
       this.bookForm.controls['id'].setValue(data.id);
       this.bookForm.controls['title'].setValue(data.title);
       this.bookForm.controls['description'].setValue(data.description);
       this.bookForm.controls['pageCount'].setValue(data.pageCount);
       this.bookForm.controls['excerpt'].setValue(data.excerpt);
-      this.bookForm.controls['publishDate'].setValue(data.publishDate); 
+      this.bookForm.controls['publishDate'].setValue(data.publishDate);
     }
   }
 
@@ -54,9 +54,8 @@ export class UpdateBookComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.bookForm);
     this.service.createBook(this.bookForm.value).subscribe((data: any) => {
-      alert("Libro actualizado correctamente");
+      Swal.fire("Libro actualizado correctamente")
       this.dialog.dismissAll();
       this.router.navigate(['/books'])
       window.location.reload();
